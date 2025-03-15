@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@emailjs/browser": "3.11.0",
-    "@react-spring/three": "9.7.3",
-    "@react-three/drei": "9.92.7",
-    "@react-three/fiber": "8.15.2",
+    "@react-spring/three": "9.7.4",
+    "@react-three/drei": "9.122.0",
+    "@react-three/fiber": "8.18.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "7.3.0",
