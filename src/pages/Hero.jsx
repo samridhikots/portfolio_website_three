@@ -13,6 +13,7 @@ import CanvasLoader from '../components/Loading.jsx';
 import HeroCamera from '../components/HeroCamera.jsx';
 import { calculateSizes } from '../constants/index.js';
 import { HackerRoom } from '../components/HackerRoom.jsx';
+import Projects from '../components/Projects.jsx';
 
 const Hero = () => {
   // Use media queries to determine screen size
@@ -23,7 +24,8 @@ const Hero = () => {
   const sizes = calculateSizes(isSmall, isMobile, isTablet);
 
   return (
-    <section className="min-h-screen w-full flex flex-col relative" id="home">
+    <div className='bg-black text-white'>
+    <section className="min-h-screen w-full flex flex-col relative bg-black" id="home">
       <div className="w-full mx-auto flex flex-col sm:mt-36 mt-20 c-space gap-3">
         <p className="sm:text-3xl text-xl font-medium text-white text-center font-generalsans">
           Hi, I am Samridhi <span className="waving-hand">👋</span>
@@ -61,6 +63,8 @@ const Hero = () => {
         </a>
       </div>
     </section>
+    <Projects/>
+    </div>
   );
 };
 

@@ -106,22 +106,52 @@ export const socialLinks = [
 // =============== PROJECTS (Resume-correct) ===============
 export const projects = [
   {
-    iconUrl: threads,
-    theme: "btn-back-green",
-    name: "Voira – Real-Time Video Calling App",
-    description:
-      "Built a video calling and messaging app using Next.js, Node.js, WebRTC, and Socket.io with real-time communication and responsive design.",
-    link: "https://github.com/samridhi-27",
+    title: "Voira – Real-Time Video Calling App",
+    desc: "Built a high-performance real-time video calling and messaging app using WebRTC, Socket.io, and Node.js. Supports seamless peer-to-peer communication with robust signaling, optimized media handling, and responsive UI.",
+    subdesc:
+      "Developed with Next.js, WebRTC, Socket.io, Express.js, and modern UI styling for low-latency video communication across devices.",
+    href: "https://github.com/samridhikots",
+    texture: '/textures/project/project2.mp4',
+    logo: '/assets/project-logo2.png',
+    logoStyle: {
+      backgroundColor: "#1A1A1A",
+      border: "0.2px solid #2E2E2E",
+      boxShadow: "0px 0px 60px 0px rgba(0, 255, 120, 0.25)",
+    },
+    spotlight: "/assets/spotlight1.png",
+    tags: [
+      { id: 1, name: "Next.js", path: "/assets/next.svg" },
+      { id: 2, name: "WebRTC", path: "/assets/webrtc.png" },
+      { id: 3, name: "Socket.io", path: "/assets/socket-io.svg" },
+      { id: 4, name: "Node.js", path: "/assets/nodejs.svg" },
+    ],
   },
+
   {
-    iconUrl: summiz,
-    theme: "btn-back-yellow",
-    name: "Facpro – Academic Achievement Tracker",
-    description:
-      "Developed mobile (Kotlin) + web (React.js) app for managing professor achievements using GraphQL, Express, SQL & MongoDB.",
-    link: "https://github.com/samridhi-27",
+    title: "Facpro – Academic Achievement Tracker",
+    desc: "A cross-platform academic achievement tracking system for professors with seamless sync between mobile and web. Includes efficient data storage, filtering, and analytics.",
+    subdesc:
+      "Built using Kotlin for mobile, React.js for web, GraphQL API, Express.js backend, and SQL + MongoDB hybrid data structure for optimized querying.",
+    href: "https://github.com/samridhikots",
+    texture: '/textures/project/project1.mp4',
+    logo: '/assets/project-logo1.png',
+    logoStyle: {
+      backgroundColor: "#2F2500",
+      border: "0.2px solid #4A3A00",
+      boxShadow: "0px 0px 60px 0px rgba(255, 200, 0, 0.3)",
+    },
+    spotlight: "/assets/spotlight2.png",
+    tags: [
+      { id: 1, name: "React.js", path: "/assets/react.svg" },
+      { id: 2, name: "Kotlin", path: "/assets/kotlin.svg" },
+      { id: 3, name: "GraphQL", path: "/assets/graphql.svg" },
+      { id: 4, name: "Express.js", path: "/assets/express.svg" },
+      { id: 5, name: "MongoDB", path: "/assets/mongodb.svg" },
+      { id: 6, name: "SQL", path: "/assets/sql.svg" },
+    ],
   },
 ];
+
 
 
 // ===== 3D Scene Calculations (unchanged) =====
