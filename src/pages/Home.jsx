@@ -1,21 +1,19 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 
-import sakura from "../assets/sakura.mp3";
+import nightSkyMusic from "../assets/night-sky.mp3";
 import HomeInfo from "../components/core/HomeInfo";
 import Loader from "../components/core/Loader";
 import { soundoff, soundon } from "../assets/icons";
-import { Bird, Island, Plane, Sky } from "../models";
-import { Cloud, Float, Sparkles, Stars, Trail } from "@react-three/drei";
-import { EffectComposer } from "three-stdlib";
-import { Bloom } from "@react-three/postprocessing";
+import { Bird, Island, Plane } from "../models";
+import { Cloud, Float, Sparkles, Stars } from "@react-three/drei";
 
 /* ============================
      3D ISLAND SCENE
   ============================ */
 
 const Home = () => {
-  const audioRef = useRef(new Audio(sakura));
+  const audioRef = useRef(new Audio(nightSkyMusic));
   audioRef.current.volume = 0.4;
   audioRef.current.loop = true;
 
