@@ -5,7 +5,7 @@ import Navbar from "./components/ui/Navbar";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
-
+import ContactForm from "./components/ui/ContactForm";
 
 const App = () => {
   return (
@@ -21,6 +21,7 @@ const App = () => {
                 <Routes>
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<ContactForm />} />
                 </Routes>
                 <Footer />
               </>

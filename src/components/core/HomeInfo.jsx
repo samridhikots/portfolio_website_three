@@ -9,7 +9,7 @@ const HomeInfo = ({ currentStage }) => {
         Hi, I'm
         <span className="font-semibold mx-2 text-white">Samridhi</span>
         👋
-        <br />A Software Engineer from India 🇮🇳
+        <br />A Full Stack Software Developer
       </h1>
     );
 
@@ -17,7 +17,7 @@ const HomeInfo = ({ currentStage }) => {
     return (
       <div className="info-box">
         <p className="font-medium sm:text-xl text-center">
-          Worked with many companies <br /> and picked up many skills along the
+          Working at Deloitte for various clients<br /> and picked up many skills along the
           way
         </p>
 
@@ -33,8 +33,7 @@ const HomeInfo = ({ currentStage }) => {
     return (
       <div className="info-box">
         <p className="font-medium text-center sm:text-xl">
-          Led multiple projects to success over the years. <br /> Curious about
-          the impact?
+          With 3+ years of experience, built amazing websites for fun. <br /> Curious about the Projects?
         </p>
 
         <Link to="/projects" className="neo-brutalism-white neo-btn">
@@ -54,7 +53,7 @@ const HomeInfo = ({ currentStage }) => {
         </p>
 
         <Link to="/contact" className="neo-brutalism-white neo-btn">
-          Let's talk
+          Let's Connect
           <img src={arrow} alt="arrow" className="w-4 h-4 object-contain" />
         </Link>
       </div>

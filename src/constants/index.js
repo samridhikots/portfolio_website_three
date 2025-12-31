@@ -129,7 +129,7 @@ export const projects = [
       "Built using WebRTC for peer-to-peer media streaming, Socket.io for signaling, and Next.js with modern UI patterns.",
     href: "https://voira.netlify.app/",
     texture: "/textures/project/project2.mp4",
-    logo: "/assets/project-logo2.png",
+    logo: "/assets/voira.png",
     logoStyle: {
       backgroundColor: "#0B0F0D",
       border: "0.5px solid rgba(0, 255, 136, 0.25)",
@@ -153,7 +153,7 @@ export const projects = [
       "Built with Three.js and React Three Fiber, featuring smooth camera transitions, material switching, and realistic lighting.",
     href: "https://guitarconfigurator.netlify.app/",
     texture: "/textures/project/project1.mp4",
-    logo: "/assets/project-guitar.png",
+    logo: "/assets/guitar.gif",
     logoStyle: {
       backgroundColor: "#0A1020",
       border: "0.5px solid rgba(80, 140, 255, 0.3)",
@@ -178,7 +178,7 @@ export const projects = [
       "Uses MediaPipe Hands for hand tracking, where the left hand controls chords and the right hand strums strings in a 3D environment.",
     href: "https://air-guitar-pro.vercel.app/",
     texture: "/textures/project/project3.mp4",
-    logo: "/assets/project-airguitar.png",
+    logo: "/assets/project-logo1.png",
     logoStyle: {
       backgroundColor: "#140A1F",
       border: "0.5px solid rgba(190, 120, 255, 0.3)",
@@ -202,7 +202,7 @@ export const projects = [
       "Implements zoom, depth, and tone changes using MediaPipe Hands and Three.js to create a surreal, reactive scene.",
     href: "https://github.com/samridhikots",
     texture: "/textures/project/project4.mp4",
-    logo: "/assets/project-particles.png",
+    logo: "/assets/particles.gif",
     logoStyle: {
       backgroundColor: "#06141A",
       border: "0.5px solid rgba(70, 220, 220, 0.3)",
@@ -224,7 +224,7 @@ export const projects = [
       "Built with Kotlin for mobile, React for web, GraphQL APIs, and a hybrid SQL + MongoDB architecture.",
     href: "https://facpro-msi.web.app/",
     texture: "/textures/project/project5.mp4",
-    logo: "/assets/project-logo1.png",
+    logo: "/assets/facpro.svg",
     logoStyle: {
       backgroundColor: "#1C170A",
       border: "0.5px solid rgba(255, 200, 61, 0.3)",

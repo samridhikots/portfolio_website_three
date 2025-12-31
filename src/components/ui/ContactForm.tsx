@@ -69,7 +69,7 @@ const ContactForm = () => {
     <section className="min-h-screen bg-black flex items-center justify-center px-6 py-20 relative">
       {alert.show && <Alert {...alert} />}
 
-      <div className="max-w-6xl w-full grid lg:grid-cols-5 gap-12 items-center">
+      <div className="max-w-6xl w-full grid lg:grid-cols-5 gap-12 items-center mt-9">
         {/* ============================
             LEFT: CONTACT FORM
         ============================ */}
