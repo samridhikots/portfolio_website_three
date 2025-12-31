@@ -1,12 +1,8 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import {
-  motion,
-  useScroll,
-  useMotionValueEvent,
-} from "framer-motion";
-import ContactForm from "./ContactForm";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import ContactForm from "../ui/ContactForm";
 
 /* =========================================================
    CONFIG
@@ -18,8 +14,7 @@ const SCROLL_HEIGHT_MULTIPLIER = 600; // Increased from 400 for slower scroll
 
 /* Utility functions */
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-const clamp = (v: number, min = 0, max = 1) =>
-  Math.max(min, Math.min(max, v));
+const clamp = (v: number, min = 0, max = 1) => Math.max(min, Math.min(max, v));
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
 /* =========================================================
@@ -89,8 +84,7 @@ const GALLERIES = [
   {
     title: "After Dark",
     subtitle: "Light, depth, atmosphere",
-    description:
-      "Where shadows fade and the city reveals its luminous core.",
+    description: "Where shadows fade and the city reveals its luminous core.",
     images: [
       { src: IMAGES[4], x: 12, y: 14, w: 32, h: 36, r: -5 },
       { src: IMAGES[0], x: 58, y: 12, w: 34, h: 30, r: 3 },
@@ -105,13 +99,7 @@ const GALLERIES = [
    SINGLE GALLERY SCENE
 ========================================================= */
 
-function GalleryScene({
-  data,
-  progress,
-}: {
-  data: any;
-  progress: number;
-}) {
+function GalleryScene({ data, progress }: { data: any; progress: number }) {
   const p = easeOutCubic(progress);
 
   return (
@@ -155,12 +143,8 @@ function GalleryScene({
           transform: `scale(${lerp(1, 0.9, progress)})`,
         }}
       >
-        <h1 className="text-white text-6xl font-bold">
-          {data.title}
-        </h1>
-        <p className="text-gray-400 mt-4 text-lg">
-          {data.subtitle}
-        </p>
+        <h1 className="text-white text-6xl font-bold">{data.title}</h1>
+        <p className="text-gray-400 mt-4 text-lg">{data.subtitle}</p>
       </div>
 
       {/* TEXT IN EMPTY PUZZLE SPACE */}
@@ -190,7 +174,6 @@ function GalleryScene({
   );
 }
 
-
 /* =========================================================
    MAIN HERO GALLERY
 ========================================================= */
@@ -214,12 +197,12 @@ export default function HeroGallery() {
   // Smooth damping for scroll resistance
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     setIsScrolling(true);
-    
+
     // Clear existing timeout
     if (scrollTimeout.current) {
       clearTimeout(scrollTimeout.current);
     }
-    
+
     // Set new timeout to detect scroll end
     scrollTimeout.current = setTimeout(() => {
       setIsScrolling(false);
@@ -228,7 +211,7 @@ export default function HeroGallery() {
     // Apply easing to create scroll resistance
     const dampingFactor = 0.3; // Lower = more resistance (0.1-0.5 recommended)
     const targetProgress = v * TOTAL_GALLERIES;
-    
+
     setSmoothProgress((prev) => {
       return prev + (targetProgress - prev) * dampingFactor;
     });
@@ -236,20 +219,21 @@ export default function HeroGallery() {
 
   // Update scene based on smooth progress
   React.useEffect(() => {
-    const index = Math.min(
-      TOTAL_GALLERIES - 1,
-      Math.floor(smoothProgress)
-    );
+    const index = Math.min(TOTAL_GALLERIES - 1, Math.floor(smoothProgress));
     setSceneIndex(index);
     setSceneProgress(smoothProgress - index);
 
     // Auto-scroll to contact form when gallery completes
-    if (index === TOTAL_GALLERIES - 1 && sceneProgress > 0.99 && !hasAutoScrolled) {
+    if (
+      index === TOTAL_GALLERIES - 1 &&
+      sceneProgress > 0.99 &&
+      !hasAutoScrolled
+    ) {
       setHasAutoScrolled(true);
       setTimeout(() => {
-        contactRef.current?.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
+        contactRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
         });
       }, 300);
     }
@@ -258,19 +242,28 @@ export default function HeroGallery() {
   // Calculate next scene for crossfade
   const nextSceneIndex = Math.min(sceneIndex + 1, TOTAL_GALLERIES - 1);
   const crossfadeStart = 0.7; // Start fading at 70% through current scene
-  const crossfadeProgress = clamp((sceneProgress - crossfadeStart) / (1 - crossfadeStart));
+  const crossfadeProgress = clamp(
+    (sceneProgress - crossfadeStart) / (1 - crossfadeStart)
+  );
 
   return (
     <>
-      <div ref={ref} className="relative bg-black" style={{ height: `${SCROLL_HEIGHT_MULTIPLIER}vh` }}>
-        <div className="sticky top-0 h-screen overflow-hidden" style={{ 
-          cursor: isScrolling ? 'grabbing' : 'grab'
-        }}>
+      <div
+        ref={ref}
+        className="relative bg-black"
+        style={{ height: `${SCROLL_HEIGHT_MULTIPLIER}vh` }}
+      >
+        <div
+          className="sticky top-0 h-screen overflow-hidden"
+          style={{
+            cursor: isScrolling ? "grabbing" : "grab",
+          }}
+        >
           {/* Current Scene */}
-          <div 
-            style={{ 
+          <div
+            style={{
               opacity: 1 - crossfadeProgress,
-              transition: 'opacity 0.1s linear'
+              transition: "opacity 0.1s linear",
             }}
           >
             <GalleryScene
@@ -281,17 +274,14 @@ export default function HeroGallery() {
 
           {/* Next Scene (Crossfade) */}
           {sceneProgress > crossfadeStart && nextSceneIndex !== sceneIndex && (
-            <div 
+            <div
               className="absolute inset-0"
-              style={{ 
+              style={{
                 opacity: crossfadeProgress,
-                transition: 'opacity 0.1s linear'
+                transition: "opacity 0.1s linear",
               }}
             >
-              <GalleryScene
-                data={GALLERIES[nextSceneIndex]}
-                progress={0}
-              />
+              <GalleryScene data={GALLERIES[nextSceneIndex]} progress={0} />
             </div>
           )}
         </div>

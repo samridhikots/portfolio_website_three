@@ -2,9 +2,14 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 
 import sakura from "../assets/sakura.mp3";
-import { HomeInfo, Loader } from "../components";
+import HomeInfo from "../components/core/HomeInfo";
+import Loader from "../components/core/Loader";
 import { soundoff, soundon } from "../assets/icons";
 import { Bird, Island, Plane, Sky } from "../models";
+
+/* ============================
+     3D ISLAND SCENE
+  ============================ */
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));

@@ -5,8 +5,13 @@ import { Canvas } from '@react-three/fiber';
 import { Center, OrbitControls } from '@react-three/drei';
 
 import { projects } from '../constants/index.js';
-import CanvasLoader from '../components/Loading.jsx';
-import DemoComputer from '../components/DemoComputer.jsx';
+import CanvasLoader from '../components/core/CanvasLoader.jsx'
+import ProjectsComputer from '../components/3D/ProjectsComputer.jsx';
+
+  /* ============================
+     PROJECTS PAGE
+  ============================ */
+
 
 const projectCount = projects.length;
 
@@ -88,7 +93,7 @@ const Projects = () => {
             <Center>
               <Suspense fallback={<CanvasLoader />}>
                 <group scale={2} position={[0, -3, 0]} rotation={[0, -0.1, 0]}>
-                  <DemoComputer texture={currentProject.texture} />
+                  <ProjectsComputer texture={currentProject.texture} />
                 </group>
               </Suspense>
             </Center>

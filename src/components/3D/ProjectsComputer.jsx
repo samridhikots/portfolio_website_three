@@ -7,7 +7,7 @@ import { useGLTF, useAnimations, useVideoTexture } from '@react-three/drei';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-const DemoComputer = (props) => {
+const ProjectsComputer = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF('/models/computer.glb');
   const { actions } = useAnimations(animations, group);
@@ -1013,4 +1013,4 @@ const DemoComputer = (props) => {
 
 useGLTF.preload('/models/computer.glb');
 
-export default DemoComputer;
+export default ProjectsComputer;

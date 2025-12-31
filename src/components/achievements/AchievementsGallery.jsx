@@ -1,9 +1,7 @@
 "use client";
 
-import Footer from "./Footer";
-import HeroGallery from "./HeroGallery/HeroGallery";
-
-
+import Footer from "../ui/Footer";
+import HeroGallery from "./HeroGallery";
 
 const hackathons = [
   {
@@ -34,9 +32,10 @@ const hackathons = [
 ];
 
 export default function HackathonSection() {
-  return (<>
-    <HeroGallery />
-    <Footer/>
+  return (
+    <>
+      <HeroGallery />
+      <Footer />
     </>
-  )
+  );
 }

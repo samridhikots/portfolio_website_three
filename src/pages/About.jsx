@@ -1,117 +1,107 @@
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
+import { Leva } from "leva";
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { useMediaQuery } from "react-responsive";
+import { PerspectiveCamera } from "@react-three/drei";
 
-import { CTA } from "../components";
-import { experiences, skills } from "../constants";
-
-import "react-vertical-timeline-component/style.min.css";
+import Cube from "../components/3D/Cube.jsx";
+import Rings from "../components/3D/Rings.jsx";
+import ReactLogo from "../components/3D/ReactLogo.jsx";
+import Button from "../components/ui/Button.jsx";
+import Target from "../components/3D/Target.jsx";
+import CanvasLoader from "../components/core/CanvasLoader.jsx";
+import DeveloperRoomCamera from "../components/3D/DeveloperRoomCamera.jsx";
+import { calculateSizes } from "../constants/index.js";
+import { DeveloperRoom } from "../components/3D/DeveloperRoom.jsx";
+import SkillsPlayground from "../components/skills/SkillsPlayground.jsx";
+import HackathonSection from "../components/achievements/AchievementsGallery.jsx";
 
 const About = () => {
+  const isSmall = useMediaQuery({ maxWidth: 440 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
+  const sizes = calculateSizes(isSmall, isMobile, isTablet);
+
   return (
-    <section className="max-container">
-      <h1 className="head-text">
-        Hello, I'm{" "}
-        <span className="blue-gradient_text font-semibold drop-shadow">
-          {" "}
-          Samridhi
-        </span>{" "}
-        👋
-      </h1>
+    <div className="bg-black text-white">
+      <section
+        className="min-h-screen w-full flex flex-col relative bg-black"
+        id="home"
+      >
+        {/* expanded c-space */}
+        <div className="w-full mx-auto flex flex-col sm:mt-36 mt-20 sm:px-10 px-5 gap-3">
+          <p className="sm:text-3xl text-xl font-medium text-white text-center font-generalsans">
+            Hi, I am Samridhi <span className="waving-hand">👋</span>
+          </p>
 
-      <div className="mt-5 flex flex-col gap-3 text-slate-500">
-        <p>
-          Full Stack Developer at Deloitte USI, crafting performant web and
-          mobile applications with React, Next.js, Node.js, and GraphQL.
-          Passionate about building immersive 3D experiences, real-time apps,
-          and solving complex engineering problems.
-        </p>
-      </div>
-
-      <div className="py-10 flex flex-col">
-        <h3 className="subhead-text">My Skills</h3>
-
-        <div className="mt-16 flex flex-wrap gap-12">
-          {skills.map((skill) => (
-            <div className="block-container w-20 h-20" key={skill.name}>
-              <div className="btn-back rounded-xl" />
-              <div className="btn-front rounded-xl flex justify-center items-center">
-                <img
-                  src={skill.imageUrl}
-                  alt={skill.name}
-                  className="w-1/2 h-1/2 object-contain"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="py-16">
-        <h3 className="subhead-text">Work Experience.</h3>
-        <div className="mt-5 flex flex-col gap-3 text-slate-500">
-          <p>
-            I've worked with all sorts of companies, leveling up my skills and
-            teaming up with smart people. Here's the rundown:
+          {/* expanded hero_tag + text-gray_gradient */}
+          <p
+            className="
+            text-center 
+            xl:text-6xl 
+            md:text-5xl 
+            sm:text-4xl 
+            text-3xl 
+            font-generalsans 
+            font-black 
+            !leading-normal
+            bg-gradient-to-r 
+            from-[#BEC1CF] from-60% 
+            via-[#D5D8EA] via-60% 
+            to-[#D5D8EA] to-100% 
+            bg-clip-text 
+            text-transparent
+          "
+          >
+            Building Products & Brands
           </p>
         </div>
 
-        <div className="mt-12 flex">
-          <VerticalTimeline>
-            {experiences.map((experience, index) => (
-              <VerticalTimelineElement
-                key={experience.company_name}
-                date={experience.date}
-                iconStyle={{ background: experience.iconBg }}
-                icon={
-                  <div className="flex justify-center items-center w-full h-full">
-                    <img
-                      src={experience.icon}
-                      alt={experience.company_name}
-                      className="w-[60%] h-[60%] object-contain"
-                    />
-                  </div>
-                }
-                contentStyle={{
-                  borderBottom: "8px",
-                  borderStyle: "solid",
-                  borderBottomColor: experience.iconBg,
-                  boxShadow: "none",
-                }}
-              >
-                <div>
-                  <h3 className="text-black text-xl font-poppins font-semibold">
-                    {experience.title}
-                  </h3>
-                  <p
-                    className="text-black-500 font-medium text-base"
-                    style={{ margin: 0 }}
-                  >
-                    {experience.company_name}
-                  </p>
-                </div>
+        <div className="w-full h-full absolute inset-0">
+          <Canvas className="w-full h-full">
+            <Suspense fallback={<CanvasLoader />}>
+              <Leva hidden />
+              <PerspectiveCamera makeDefault position={[0, 0, 30]} />
 
-                <ul className="my-5 list-disc ml-5 space-y-2">
-                  {experience.points.map((point, index) => (
-                    <li
-                      key={`experience-point-${index}`}
-                      className="text-black-500/50 font-normal pl-1 text-sm"
-                    >
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </VerticalTimelineElement>
-            ))}
-          </VerticalTimeline>
+              <DeveloperRoomCamera isMobile={isMobile}>
+                <DeveloperRoom
+                  scale={sizes.deskScale}
+                  position={sizes.deskPosition}
+                  rotation={[0.1, -Math.PI, 0]}
+                />
+              </DeveloperRoomCamera>
+
+              <group>
+                <Target position={sizes.targetPosition} />
+                <ReactLogo position={sizes.reactLogoPosition} />
+                <Rings position={sizes.ringPosition} />
+                <Cube position={sizes.cubePosition} />
+              </group>
+
+              <ambientLight intensity={1} />
+              <directionalLight position={[10, 10, 10]} intensity={0.5} />
+            </Suspense>
+          </Canvas>
         </div>
-      </div>
 
-      <hr className="border-slate-200" />
-
-      <CTA />
-    </section>
+        {/* expanded c-space */}
+        <div className="absolute bottom-7 left-0 right-0 w-full z-20 sm:px-10 px-5">
+          <a href="#about" className="w-fit mx-auto block">
+            <Button
+              name="Let's work together"
+              isBeam
+              containerClass="sm:w-fit w-full sm:min-w-96 flex gap-4 items-center justify-center cursor-pointer p-3 rounded-md bg-black-300 transition-all active:scale-95 text-white mx-auto;"
+            />
+          </a>
+        </div>
+      </section>
+      <section className="min-h-screen w-full mt-20">
+        <SkillsPlayground />
+      </section>
+      <section className="min-h-screen max-h-screen w-full mt-20">
+        <HackathonSection />
+      </section>
+    </div>
   );
 };
 
