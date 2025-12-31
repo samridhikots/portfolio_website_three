@@ -1,0 +1,48 @@
+.skills-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  /* Remove cursor from here - let canvas handle it */
+  touch-action: none; 
+}
+
+.skill-card {
+  /* Initial Position MUST be absolute 0,0 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  /* Dimensions must match the physics body size in JS */
+  width: 150px;
+  height: 60px;
+  
+  /* Styling */
+  border-radius: 999px; /* Pill shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  will-change: transform;
+  
+  /* CRITICAL: Set z-index lower than canvas */
+  z-index: 1;
+  
+  /* IMPORTANT: Ignore mouse events on the cards */
+  pointer-events: none;
+}
+
+/* Canvas should be above cards for mouse detection */
+.skills-container canvas {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 5 !important;
+  cursor: grab !important;
+}
+
+.skills-container canvas:active {
+  cursor: grabbing !important;
+}

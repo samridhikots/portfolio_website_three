@@ -1,70 +1,103 @@
-import { Link } from "react-router-dom";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { Suspense, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Center, OrbitControls } from '@react-three/drei';
 
-import { CTA } from "../components";
-import { projects } from "../constants";
-import { arrow } from "../assets/icons";
+import { projects } from '../constants/index.js';
+import CanvasLoader from '../components/Loading.jsx';
+import DemoComputer from '../components/DemoComputer.jsx';
+
+const projectCount = projects.length;
 
 const Projects = () => {
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+
+  const handleNavigation = (direction) => {
+    setSelectedProjectIndex((prevIndex) => {
+      if (direction === 'previous') {
+        return prevIndex === 0 ? projectCount - 1 : prevIndex - 1;
+      } else {
+        return prevIndex === projectCount - 1 ? 0 : prevIndex + 1;
+      }
+    });
+  };
+
+  useGSAP(() => {
+    gsap.fromTo(`.animatedText`, { opacity: 0 }, { opacity: 1, duration: 1, stagger: 0.2, ease: 'power2.inOut' });
+  }, [selectedProjectIndex]);
+
+  const currentProject = projects[selectedProjectIndex];
+
   return (
-    <section className="max-container">
-      <h1 className="head-text">
-        My{" "}
-        <span className="blue-gradient_text drop-shadow font-semibold">
-          Projects
-        </span>
-      </h1>
+    <div className='text-white min-h-screen w-full flex flex-col relative bg-black'>
+    <section className="sm:px-10 mt-10 mx-10 p-20">
+      <p className="sm:text-4xl text-3xl font-semibold bg-gradient-to-r from-[#BEC1CF] from-60% via-[#D5D8EA] via-60% to-[#D5D8EA] to-100% bg-clip-text text-transparent">Project Work</p>
 
-      <p className="text-slate-500 mt-2 leading-relaxed">
-        I've embarked on numerous projects throughout the years, but these are
-        the ones I hold closest to my heart. Many of them are open-source, so if
-        you come across something that piques your interest, feel free to
-        explore the codebase and contribute your ideas for further enhancements.
-        Your collaboration is highly valued!
-      </p>
-
-      <div className="flex flex-wrap my-20 gap-16">
-        {projects.map((project) => (
-          <div className="lg:w-[400px] w-full" key={project.name}>
-            <div className="block-container w-12 h-12">
-              <div className={`btn-back rounded-xl ${project.theme}`} />
-              <div className="btn-front rounded-xl flex justify-center items-center">
-                <img
-                  src={project.iconUrl}
-                  alt="threads"
-                  className="w-1/2 h-1/2 object-contain"
-                />
-              </div>
-            </div>
-
-            <div className="mt-5 flex flex-col">
-              <h4 className="text-2xl font-poppins font-semibold">
-                {project.name}
-              </h4>
-              <p className="mt-2 text-slate-500">{project.description}</p>
-              <div className="mt-5 flex items-center gap-2 font-poppins">
-                <Link
-                  to={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-blue-600"
-                >
-                  Live Link
-                </Link>
-                <img
-                  src={arrow}
-                  alt="arrow"
-                  className="w-4 h-4 object-contain"
-                />
-              </div>
-            </div>
+      <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full">
+        <div className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black-200">
+          <div className="absolute top-0 right-0">
+            <img src={currentProject.spotlight} alt="spotlight" className="w-full h-96 object-cover rounded-xl" />
           </div>
-        ))}
+
+          <div className="p-3 backdrop-filter backdrop-blur-3xl w-fit rounded-lg" style={currentProject.logoStyle}>
+            <img className="w-10 h-10 shadow-sm" src={currentProject.logo} alt="logo" />
+          </div>
+
+          <div className="flex flex-col gap-5 text-white-600 my-5">
+            <p className="text-white text-2xl font-semibold animatedText">{currentProject.title}</p>
+
+            <p className="animatedText">{currentProject.desc}</p>
+            <p className="animatedText">{currentProject.subdesc}</p>
+          </div>
+
+          <div className="flex items-center justify-between flex-wrap gap-5">
+            <div className="flex items-center gap-3">
+              {currentProject.tags.map((tag, index) => (
+                <div key={index} className="w-10 h-10 rounded-md p-2 bg-neutral-100 bg-opacity-10 backdrop-filter backdrop-blur-lg flex justify-center items-center">
+                  <img src={tag.path} alt={tag.name} />
+                </div>
+              ))}
+            </div>
+
+            <a
+              className="flex items-center gap-2 cursor-pointer text-white-600"
+              href={currentProject.href}
+              target="_blank"
+              rel="noreferrer">
+              <p>Check Live Site</p>
+              <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
+            </a>
+          </div>
+
+          <div className="flex justify-between items-center mt-7">
+            <button className="w-10 h-10 p-3 cursor-pointer active:scale-95 transition-all rounded-full arrow-gradient" onClick={() => handleNavigation('previous')}>
+              <img src="/assets/left-arrow.png" alt="left arrow" />
+            </button>
+
+            <button className="w-10 h-10 p-3 cursor-pointer active:scale-95 transition-all rounded-full arrow-gradient" onClick={() => handleNavigation('next')}>
+              <img src="/assets/right-arrow.png" alt="right arrow" className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
+          <Canvas>
+            <ambientLight intensity={Math.PI} />
+            <directionalLight position={[10, 10, 5]} />
+            <Center>
+              <Suspense fallback={<CanvasLoader />}>
+                <group scale={2} position={[0, -3, 0]} rotation={[0, -0.1, 0]}>
+                  <DemoComputer texture={currentProject.texture} />
+                </group>
+              </Suspense>
+            </Center>
+            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />
+          </Canvas>
+        </div>
       </div>
-
-      <hr className="border-slate-200" />
-
-      <CTA />
     </section>
+    </div>
   );
 };
 
