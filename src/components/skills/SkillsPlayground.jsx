@@ -5,18 +5,23 @@ const skills = [
   { name: "JavaScript", color: "#F7DF1E", icon: "JS", textColor: "#000" },
   { name: "Next.js", color: "#E5E7EB", icon: "N", textColor: "#000" },
   { name: "React", color: "#61DAFB", icon: "⚛", textColor: "#000" },
-  { name: "Node.js", color: "#68A063", icon: "node" },
-  { name: "Git", color: "#F05032", icon: "git" },
-  { name: "Tailwind", color: "#38BDF8", icon: "tw" },
-  { name: "Docker", color: "#2496ED", icon: "🐋" },
-  { name: "PostgreSQL", color: "#336791", icon: "🐘" },
   { name: "Three.js", color: "#49E07C", icon: "▶", textColor: "#000" },
-  { name: "GSAP", color: "#88CE02", icon: "gsap", textColor: "#000" },
+
+  { name: "Node.js", color: "#68A063", icon: "node" },
+  { name: "Express", color: "#FFFFFF", icon: "ex", textColor: "#000" },
   { name: "MongoDB", color: "#13AA52", icon: "🍃" },
-  { name: "Express", color: "#9CA3AF", icon: "ex" },
-  { name: "Redis", color: "#DC382D", icon: "⚡" },
-  { name: "Vercel", color: "#FFFFFF", icon: "▲", textColor: "#000" },
+
+  { name: "C++", color: "#00599C", icon: "</>" },
+  { name: "Java", color: "#FFFFFF", icon: "♨", textColor: "#000" },
+  { name: "SQL", color: "#336791", icon: "📊" },
+
+  { name: "Tailwind", color: "#38BDF8", icon: "tw", textColor: "#000" },
+  { name: "GSAP", color: "#88CE02", icon: "gsap", textColor: "#000" },
+
+  { name: "Git", color: "#F05032", icon: "👩🏻‍💻" },
+  { name: "Shadcn", color: "#E11D48", icon: "🪄" },
 ];
+
 
 export default function SkillsPlayground({ height = 600 }) {
   const containerRef = useRef(null);
@@ -164,7 +169,7 @@ export default function SkillsPlayground({ height = 600 }) {
         
         // Draw icon
         context.fillStyle = skill.textColor || '#FFFFFF';
-        context.font = 'bold 32px Arial';
+        context.font = 'bold 34px Arial';
         context.textAlign = 'center';
         context.textBaseline = 'middle';
         context.fillText(skill.icon, 0, -15);
@@ -247,7 +252,7 @@ export default function SkillsPlayground({ height = 600 }) {
           margin: 0,
           color: '#9CA3AF'
         }}>
-          Drag, throw, and watch them bounce. Nothing escapes!
+          Drag, throw, and watch them bounce.
         </p>
       </div>
 

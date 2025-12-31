@@ -25,6 +25,22 @@ import {
   snapgram,
 } from "../assets/icons";
 
+import {
+  SiTypescript,
+  SiJavascript,
+  SiNextdotjs,
+  SiReact,
+  SiNodedotjs,
+  SiGit,
+  SiTailwindcss,
+  SiMysql,
+  SiThreedotjs,
+  SiGreensock,
+  SiMongodb,
+  SiExpress,
+  SiCplusplus,
+} from "react-icons/si";
+
 // =============== SKILLS (From Resume) ===============
 export const skills = [
   // Languages
@@ -94,65 +110,136 @@ export const socialLinks = [
   {
     name: "GitHub",
     iconUrl: github,
-    link: "https://github.com/samridhi-27",
+    link: "https://github.com/samridhikots",
   },
   {
     name: "LinkedIn",
     iconUrl: linkedin,
-    link: "https://www.linkedin.com/in/samridhi27/",
+    link: "https://www.linkedin.com/in/samridhikots/",
   },
 ];
 
-// =============== PROJECTS (Resume-correct) ===============
+// =============== PROJECTS ===============
 export const projects = [
+  // 📹 Voira
   {
     title: "Voira – Real-Time Video Calling App",
-    desc: "Built a high-performance real-time video calling and messaging app using WebRTC, Socket.io, and Node.js. Supports seamless peer-to-peer communication with robust signaling, optimized media handling, and responsive UI.",
+    desc: "A Google Meet–style real-time video calling platform with integrated chat for seamless collaboration.",
     subdesc:
-      "Developed with Next.js, WebRTC, Socket.io, Express.js, and modern UI styling for low-latency video communication across devices.",
-    href: "https://github.com/samridhikots",
-    texture: '/textures/project/project2.mp4',
-    logo: '/assets/project-logo2.png',
+      "Built using WebRTC for peer-to-peer media streaming, Socket.io for signaling, and Next.js with modern UI patterns.",
+    href: "https://voira.netlify.app/",
+    texture: "/textures/project/project2.mp4",
+    logo: "/assets/project-logo2.png",
     logoStyle: {
-      backgroundColor: "#1A1A1A",
-      border: "0.2px solid #2E2E2E",
-      boxShadow: "0px 0px 60px 0px rgba(0, 255, 120, 0.25)",
+      backgroundColor: "#0B0F0D",
+      border: "0.5px solid rgba(0, 255, 136, 0.25)",
+      boxShadow: "0px 0px 60px rgba(0, 255, 136, 0.35)",
     },
-    spotlight: "/assets/spotlight1.png",
+    spotlight: "/assets/spotlight3.png",
     tags: [
-      { id: 1, name: "Next.js", path: "/assets/next.svg" },
-      { id: 2, name: "WebRTC", path: "/assets/webrtc.png" },
-      { id: 3, name: "Socket.io", path: "/assets/socket-io.svg" },
-      { id: 4, name: "Node.js", path: "/assets/nodejs.svg" },
+      { id: 1, name: "Next.js", path: "/assets/nextjs.svg" },
+      { id: 2, name: "Node.js", path: "/assets/nodejs.svg" },
+      { id: 3, name: "Socket.io", path: "/assets/socketio.svg" },
+      { id: 4, name: "Tailwind", path: "/assets/tailwindcss.png" },
     ],
   },
 
+  // 🎸 Guitar Configurator
+
   {
-    title: "Facpro – Academic Achievement Tracker",
-    desc: "A cross-platform academic achievement tracking system for professors with seamless sync between mobile and web. Includes efficient data storage, filtering, and analytics.",
+    title: "3D Guitar Configurator",
+    desc: "An interactive 3D guitar configurator allowing users to customize materials, colors, and finishes in real time.",
     subdesc:
-      "Built using Kotlin for mobile, React.js for web, GraphQL API, Express.js backend, and SQL + MongoDB hybrid data structure for optimized querying.",
-    href: "https://github.com/samridhikots",
-    texture: '/textures/project/project1.mp4',
-    logo: '/assets/project-logo1.png',
+      "Built with Three.js and React Three Fiber, featuring smooth camera transitions, material switching, and realistic lighting.",
+    href: "https://guitarconfigurator.netlify.app/",
+    texture: "/textures/project/project1.mp4",
+    logo: "/assets/project-guitar.png",
     logoStyle: {
-      backgroundColor: "#2F2500",
-      border: "0.2px solid #4A3A00",
-      boxShadow: "0px 0px 60px 0px rgba(255, 200, 0, 0.3)",
+      backgroundColor: "#0A1020",
+      border: "0.5px solid rgba(80, 140, 255, 0.3)",
+      boxShadow: "0px 0px 60px rgba(80, 140, 255, 0.4)",
     },
     spotlight: "/assets/spotlight2.png",
     tags: [
-      { id: 1, name: "React.js", path: "/assets/react.svg" },
+      { id: 1, name: "Next.js", path: "/assets/nextjs.svg" },
+      { id: 2, name: "React Three Fiber", path: "/assets/three-js.png" },
+      { id: 3, name: "React", path: "/assets/react.svg" },
+      { id: 4, name: "Framer", path: "/assets/framer.png" },
+      { id: 5, name: "Tailwind", path: "/assets/tailwindcss.png" },
+      { id: 6, name: "Typescript", path: "/assets/typescript.png" },
+    ],
+  },
+
+  // 🎸 Air Guitar
+  {
+    title: "Air Guitar – Gesture Controlled Instrument",
+    desc: "Play guitar in the air using real-time hand gesture recognition powered by computer vision.",
+    subdesc:
+      "Uses MediaPipe Hands for hand tracking, where the left hand controls chords and the right hand strums strings in a 3D environment.",
+    href: "https://air-guitar-pro.vercel.app/",
+    texture: "/textures/project/project3.mp4",
+    logo: "/assets/project-airguitar.png",
+    logoStyle: {
+      backgroundColor: "#140A1F",
+      border: "0.5px solid rgba(190, 120, 255, 0.3)",
+      boxShadow: "0px 0px 60px rgba(190, 120, 255, 0.45)",
+    },
+    spotlight: "/assets/spotlight5.png",
+    tags: [
+      { id: 1, name: "Next.js", path: "/assets/nextjs.svg" },
+      { id: 2, name: "React Three Fiber", path: "/assets/three-js.png" },
+      { id: 3, name: "React", path: "/assets/react.svg" },
+      { id: 4, name: "Typescript", path: "/assets/typescript.png" },
+      { id: 5, name: "Tailwind", path: "/assets/tailwindcss.png" },
+    ],
+  },
+
+  // ✨ Particles App
+  {
+    title: "Particles – Vision-Based Surreal Experience",
+    desc: "An experimental visual experience combining hand gestures with immersive particle-based environments.",
+    subdesc:
+      "Implements zoom, depth, and tone changes using MediaPipe Hands and Three.js to create a surreal, reactive scene.",
+    href: "https://github.com/samridhikots",
+    texture: "/textures/project/project4.mp4",
+    logo: "/assets/project-particles.png",
+    logoStyle: {
+      backgroundColor: "#06141A",
+      border: "0.5px solid rgba(70, 220, 220, 0.3)",
+      boxShadow: "0px 0px 60px rgba(70, 220, 220, 0.4)",
+    },
+    spotlight: "/assets/spotlight4.png",
+    tags: [
+      { id: 1, name: "Next.js", path: "/assets/nextjs.svg" },
+      { id: 2, name: "React three fiber", path: "/assets/three-js.png" },
+      { id: 2, name: "Typescript", path: "/assets/typescript.png" },
+    ],
+  },
+
+  // 📊 Facpro
+  {
+    title: "Facpro – Academic Achievement Tracker",
+    desc: "A cross-platform academic tracking system designed for professors to manage and analyze student performance.",
+    subdesc:
+      "Built with Kotlin for mobile, React for web, GraphQL APIs, and a hybrid SQL + MongoDB architecture.",
+    href: "https://facpro-msi.web.app/",
+    texture: "/textures/project/project5.mp4",
+    logo: "/assets/project-logo1.png",
+    logoStyle: {
+      backgroundColor: "#1C170A",
+      border: "0.5px solid rgba(255, 200, 61, 0.3)",
+      boxShadow: "0px 0px 60px rgba(255, 200, 61, 0.35)",
+    },
+    spotlight: "/assets/spotlight1.png",
+    tags: [
+      { id: 1, name: "React", path: "/assets/react.svg" },
       { id: 2, name: "Kotlin", path: "/assets/kotlin.svg" },
       { id: 3, name: "GraphQL", path: "/assets/graphql.svg" },
-      { id: 4, name: "Express.js", path: "/assets/express.svg" },
-      { id: 5, name: "MongoDB", path: "/assets/mongodb.svg" },
-      { id: 6, name: "SQL", path: "/assets/sql.svg" },
+      { id: 4, name: "MongoDB", path: "/assets/mongodb.svg" },
+      { id: 5, name: "SQL", path: "/assets/sqlite.svg" },
     ],
   },
 ];
-
-
 
 // ===== 3D Scene Calculations (unchanged) =====
 export const calculateSizes = (isSmall, isMobile, isTablet) => {
