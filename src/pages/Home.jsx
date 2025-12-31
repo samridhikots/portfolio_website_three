@@ -1,4 +1,4 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 
 import sakura from "../assets/sakura.mp3";
@@ -6,6 +6,9 @@ import HomeInfo from "../components/core/HomeInfo";
 import Loader from "../components/core/Loader";
 import { soundoff, soundon } from "../assets/icons";
 import { Bird, Island, Plane, Sky } from "../models";
+import { Cloud, Float, Sparkles, Stars, Trail } from "@react-three/drei";
+import { EffectComposer } from "three-stdlib";
+import { Bloom } from "@react-three/postprocessing";
 
 /* ============================
      3D ISLAND SCENE
@@ -68,46 +71,131 @@ const Home = () => {
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
 
-      <Canvas
-        className={`w-full h-screen bg-transparent ${
-          isRotating ? "cursor-grabbing" : "cursor-grab"
-        }`}
-        camera={{ near: 0.1, far: 1000 }}
-      >
-        <Suspense fallback={<Loader />}>
-          <directionalLight position={[1, 1, 1]} intensity={2} />
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 5, 10]} intensity={2} />
-          <spotLight
-            position={[0, 50, 10]}
-            angle={0.15}
-            penumbra={1}
-            intensity={2}
-          />
-          <hemisphereLight
-            skyColor="#b1e1ff"
-            groundColor="#000000"
-            intensity={1}
-          />
+    <Canvas
+      className={`w-full h-screen bg-transparent ${
+        isRotating ? "cursor-grabbing" : "cursor-grab"
+      }`}
+      camera={{ near: 0.1, far: 1000 }}
+    >
+      <Suspense fallback={<Loader />}>
+        {/* 1. BACKGROUND: Dark Purple/Blue instead of pure black for depth */}
+        <color attach="background" args={['#050511']} />
+        {/* Pushing fog further back (30) so it doesn't hide the island */}
+        <fog attach="fog" args={['#050511', 30, 150]} />
 
-          <Bird />
-          <Sky isRotating={isRotating} />
-          <Island
-            isRotating={isRotating}
-            setIsRotating={setIsRotating}
-            setCurrentStage={setCurrentStage}
-            position={islandPosition}
-            rotation={[0.1, 4.7077, 0]}
-            scale={islandScale}
-          />
-          <Plane
-            isRotating={isRotating}
-            position={biplanePosition}
-            rotation={[0, 20.1, 0]}
-            scale={biplaneScale}
-          />
-        </Suspense>
-      </Canvas>
+        {/* 2. STARS */}
+        {/* <Stars radius={300} depth={50} count={5000} factor={4} saturation={0} fade speed={1} /> */}
+        <Stars
+  radius={200}
+  depth={50}
+  count={3000}
+  factor={4}
+  saturation={0}
+  fade
+  speed={1}
+/>
+
+        {/* 3. LIGHTING FIXES (This fixes the "Too Dark" issue) */}
+        
+        {/* A. Hemisphere Light: The "Base" Visibility */}
+        {/* Sky is dark blue, Ground is dark green. Intensity 1 ensures we see shapes. */}
+        <hemisphereLight 
+          skyColor="#b1e1ff" // Light blue from top
+          groundColor="#000000" // Black from bottom
+          intensity={1} 
+        />
+
+        {/* B. The Moon Light (Directional) */}
+        {/* Intensity increased to 4. This is your main light source. */}
+        <directionalLight
+          position={[5, 10, 2]} 
+          intensity={4} 
+          color="#a6c1ee" // Cool moonlight blue
+          castShadow
+        />
+
+        {/* C. The Warm House Light (Contrast) */}
+        <pointLight 
+          position={[2, 4, 2]} 
+          intensity={15} 
+          distance={10} 
+          color="#ff9000" // Orange warmth
+          decay={2}
+        />
+
+        {/* 4. VISUAL EFFECTS */}
+        
+        {/* The Moon Mesh */}
+        <Float speed={2} rotationIntensity={0} floatIntensity={1}>
+          <mesh position={[5, 15, -20]}>
+             <sphereGeometry args={[2, 32, 32]} />
+             <meshBasicMaterial color="#ffffe0" /> 
+          </mesh>
+        </Float>
+
+        {/* Fireflies/Sparkles */}
+        <Sparkles 
+          color="#fffff0" 
+          count={40} 
+          size={8} 
+          scale={[12, 12, 12]} 
+          position={[0, 2, 0]} 
+          speed={0.4}
+        />
+
+        {/* Clouds - Adjusted opacity so they don't block the view */}
+        {/* 1. ORIGINAL CLOUD (Kept exactly as requested) */}
+        <Cloud 
+          opacity={0.15} 
+          speed={0.2} 
+          width={25} 
+          depth={1.5} 
+          segments={20} 
+          position={[0, 10, -15]} 
+          color="#a0b0d0"
+        />
+
+        {/* 2. FAR LEFT CLOUD */}
+        <Cloud 
+          opacity={0.15} 
+          speed={0.15} // Slightly s  lower for background depth
+          width={30} 
+          depth={2} 
+          segments={20} 
+          position={[-30, 10, -20]} // Far Left, slightly behind
+          color="#a0b0d0"
+        />
+
+        {/* 3. FAR RIGHT CLOUD */}
+        <Cloud 
+          opacity={0.15} 
+          speed={0.25} 
+          width={30} 
+          depth={2} 
+          segments={20} 
+          position={[32, 8, -20]} // Far Right, slightly lower
+          color="#a0b0d0"
+        />
+
+        
+        {/* 5. SCENE OBJECTS */}
+        <Bird />
+        <Island
+          isRotating={isRotating}
+          setIsRotating={setIsRotating}
+          setCurrentStage={setCurrentStage}
+          position={islandPosition}
+          rotation={[0.1, 4.7077, 0]}
+          scale={islandScale}
+        />
+        <Plane
+          isRotating={isRotating}
+          position={biplanePosition}
+          rotation={[0, 20.1, 0]}
+          scale={biplaneScale}
+        />
+      </Suspense>
+    </Canvas>
 
       <div className="absolute bottom-2 left-2">
         <img

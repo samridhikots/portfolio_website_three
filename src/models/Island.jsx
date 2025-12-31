@@ -24,6 +24,7 @@ export function Island({
   ...props
 }) {
   const islandRef = useRef();
+  const lightRef = useRef({intensity:0})
   // Get access to the Three.js renderer and viewport
   const { gl, viewport } = useThree();
   const { nodes, materials } = useGLTF(islandScene);
@@ -154,6 +155,11 @@ export function Island({
       canvas.removeEventListener("touchmove", handleTouchMove);
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
+
+useFrame(({ clock }) => {
+  lightRef.current.intensity =
+    0.35 + Math.sin(clock.elapsedTime * 6) * 0.05
+})
 
   // This function is called on each frame update
   useFrame(() => {
