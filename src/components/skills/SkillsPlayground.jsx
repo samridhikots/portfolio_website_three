@@ -252,7 +252,7 @@ export default function SkillsPlayground({ height = 600 }) {
           margin: 0,
           color: '#9CA3AF'
         }}>
-          Drag, throw, and watch them bounce.
+         Technologies I use to build real-world applications. Drag, throw, and explore.
         </p>
       </div>
 

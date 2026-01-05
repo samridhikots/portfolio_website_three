@@ -15,6 +15,8 @@ import { calculateSizes } from "../constants/index.js";
 import { DeveloperRoom } from "../components/3D/DeveloperRoom.jsx";
 import SkillsPlayground from "../components/skills/SkillsPlayground.jsx";
 import HackathonSection from "../components/achievements/AchievementsGallery.jsx";
+import HeroActions from "../components/ui/HeroActions.jsx";
+import ExperienceTimeline from "../components/ui/ExperienceTImeline.jsx";
 
 const About = () => {
   const isSmall = useMediaQuery({ maxWidth: 440 });
@@ -29,16 +31,16 @@ const About = () => {
         id="home"
       >
         {/* expanded c-space */}
-        <div className="w-full mx-auto flex flex-col sm:mt-36 mt-20 sm:px-10 px-5 gap-3">
+        <div className="w-full mx-auto flex flex-col sm:mt-32 mt-18 sm:px-10 px-5 gap-3">
           <p className="sm:text-3xl text-xl font-medium text-white text-center font-generalsans">
-            Hi, I am Samridhi <span className="waving-hand">👋</span>
+            Hi, I am Samridhi
           </p>
 
           {/* expanded hero_tag + text-gray_gradient */}
           <p
             className="
             text-center 
-            xl:text-6xl 
+            xl:text-4xl 
             md:text-5xl 
             sm:text-4xl 
             text-3xl 
@@ -53,7 +55,10 @@ const About = () => {
             text-transparent
           "
           >
-            Building Products & Brands
+            I build scalable web experiences
+          </p>
+          <p className="text-gray-400 text-md mt-2 text-center">
+            Next.js · MERN · Three.js · Java
           </p>
         </div>
 
@@ -85,18 +90,15 @@ const About = () => {
         </div>
 
         {/* expanded c-space */}
-        <div className="absolute bottom-7 left-0 right-0 w-full z-20 sm:px-10 px-5">
-          <a href="#about" className="w-fit mx-auto block">
-            <Button
-              name="Let's work together"
-              isBeam
-              containerClass="sm:w-fit w-full sm:min-w-96 flex gap-4 items-center justify-center cursor-pointer p-3 rounded-md bg-black-300 transition-all active:scale-95 text-white mx-auto;"
-            />
-          </a>
+        <div className="absolute bottom-20 left-0 right-0 w-full z-20 sm:px-10 px-5">
+          <HeroActions />
         </div>
       </section>
       <section className="min-h-screen w-full mt-20">
         <SkillsPlayground />
+      </section>
+      <section className="min-h-screen w-full mt-20">
+        <ExperienceTimeline />
       </section>
       <section className="min-h-screen max-h-screen w-full mt-20">
         <HackathonSection />

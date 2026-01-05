@@ -3,11 +3,11 @@ import { Suspense, useRef, useState } from "react";
 
 import { Fox } from "../../models";
 import useAlert from "../../hooks/useAlert";
-import Alert from "../ui/Alert";
+import Alert from "./Alert";
 import Loader from "../core/Loader";
 
 const ContactForm = () => {
-  const formRef = useRef<any>();
+  const formRef = useRef();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -66,7 +66,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="min-h-screen bg-black flex items-center justify-center px-6 py-20 relative">
+    <section id="contact" className="min-h-screen bg-black flex items-center justify-center px-6 py-20 relative">
       {alert.show && <Alert {...alert} />}
 
       <div className="max-w-6xl w-full grid lg:grid-cols-5 gap-12 items-center mt-9">
