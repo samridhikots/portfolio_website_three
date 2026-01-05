@@ -12,33 +12,64 @@ const Footer = () => {
         <p>Developed and Maintained by Samridhi</p>
       </div>
 
+      {/* Social Links */}
       <div className="flex gap-3">
-        <div
+        {/* GitHub */}
+        <a
+          href="https://github.com/samridhikots"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
           className="
             w-12 h-12 rounded-full flex justify-center items-center 
             bg-black-300 border border-black-200
+            hover:scale-110 transition-transform
           "
         >
-          <img src="/assets/github.svg" alt="github" className="w-1/2 h-1/2" />
-        </div>
+          <img
+            src="/assets/github.svg"
+            alt="GitHub"
+            className="w-1/2 h-1/2"
+          />
+        </a>
 
-        <div
+        {/* Twitter / X */}
+        <a
+          href="https://twitter.com/samridhikots1"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Twitter"
           className="
             w-12 h-12 rounded-full flex justify-center items-center 
             bg-black-300 border border-black-200
+            hover:scale-110 transition-transform
           "
         >
-          <img src="/assets/twitter.svg" alt="twitter" className="w-1/2 h-1/2" />
-        </div>
+          <img
+            src="/assets/twitter.svg"
+            alt="Twitter"
+            className="w-1/2 h-1/2"
+          />
+        </a>
 
-        <div
+        {/* Instagram */}
+        <a
+          href="https://instagram.com/samridhikots"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
           className="
             w-12 h-12 rounded-full flex justify-center items-center 
             bg-black-300 border border-black-200
+            hover:scale-110 transition-transform
           "
         >
-          <img src="/assets/instagram.svg" alt="instagram" className="w-1/2 h-1/2" />
-        </div>
+          <img
+            src="/assets/instagram.svg"
+            alt="Instagram"
+            className="w-1/2 h-1/2"
+          />
+        </a>
       </div>
 
       <p className="text-white-500">© 2026 Samridhi. All rights reserved.</p>
