@@ -17,7 +17,7 @@ const timelineData = [
           Deloitte USI
         </h3>
         <p className="text-sm font-medium text-neutral-500 dark:text-neutral-300">
-          Hyderabad, Telangana, India
+          Gurugram, India
         </p>
 
         {/* ATS-Optimized Experience Bullets */}
